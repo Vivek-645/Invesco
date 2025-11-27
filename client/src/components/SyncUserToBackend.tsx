@@ -31,6 +31,8 @@ export function SyncUserToBackend() {
       try {
         setIsSyncing(true);
 
+        console.log('🔄 Syncing user to backend:', user.primaryEmailAddress?.emailAddress);
+
         const payload: UpsertUserPayload = {
           email: user.primaryEmailAddress?.emailAddress,
           firstName: user.firstName || undefined,
@@ -42,8 +44,12 @@ export function SyncUserToBackend() {
           },
         };
 
+        console.log('📤 Payload:', payload);
+
         const response = await upsertUser(payload);
         
+        console.log('✅ Backend response:', response);
+
         if (response.data.isNewUser) {
           console.log('✓ New user created in backend');
         } else {
@@ -52,15 +58,18 @@ export function SyncUserToBackend() {
         
         setSynced(true);
       } catch (err) {
-        console.error('Failed to sync user:', err);
-        // Don't show error to user, just log it
+        console.error('❌ Failed to sync user:', err);
+        // Don't retry - just mark as synced to prevent infinite loop
+        setSynced(true);
       } finally {
         setIsSyncing(false);
       }
     }
 
     syncUser();
-  }, [isLoaded, isSignedIn, user?.id, synced]);
+    // Only depend on user ID changes, not the entire user object or functions
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoaded, isSignedIn, user?.id]);
 
   // Silent sync - no UI needed
   return null;

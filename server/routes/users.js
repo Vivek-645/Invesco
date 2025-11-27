@@ -64,6 +64,7 @@ router.post('/upsert', verifyClerk, upsertValidation, async (req, res) => {
       $setOnInsert: {
         clerkId,
         createdAt: now,
+        role: 'user', // default role for new users
       },
     };
 

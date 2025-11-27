@@ -7,6 +7,7 @@ import Analytics from './pages/Analytics';
 import Reports from './pages/Reports';
 import Settings from './pages/Settings';
 import Profile from './pages/Profile';
+import AdminPage from './pages/AdminPage';
 import Sidebar from './components/Sidebar';
 
 function AppRoutes() {
@@ -63,6 +64,19 @@ function AppRoutes() {
               <Sidebar />
               <main className="flex-1">
                 <Reports />
+              </main>
+            </div>
+          </SignedIn>
+        }
+      />
+      <Route
+        path="/admin"
+        element={
+          <SignedIn>
+            <div className="flex min-h-screen bg-gray-50">
+              <Sidebar />
+              <main className="flex-1">
+                <AdminPage />
               </main>
             </div>
           </SignedIn>
