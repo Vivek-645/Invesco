@@ -25,7 +25,6 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useAuth } from '@clerk/clerk-react';
 import {
   MdDashboard,
   MdShowChart,
@@ -36,7 +35,8 @@ import {
   MdClose,
   MdChevronLeft,
   MdChevronRight,
-  MdAdminPanelSettings,
+  MdInsights,
+  MdBarChart,
 } from 'react-icons/md';
 
 // Route definitions
@@ -45,20 +45,19 @@ export interface SidebarRoute {
   label: string;
   icon: React.ReactElement;
   badge?: number;
-  adminOnly?: boolean;
 }
 
 const routes: SidebarRoute[] = [
+  { path: '/stock-analytics', label: 'Stock Analytics', icon: <MdInsights size={24} /> },
+  { path: '/stock-visualizations', label: 'Visualizations', icon: <MdBarChart size={24} /> },
   { path: '/dashboard', label: 'Overview', icon: <MdDashboard size={24} /> },
   { path: '/analytics', label: 'Analytics', icon: <MdShowChart size={24} /> },
   { path: '/reports', label: 'Reports', icon: <MdDescription size={24} />, badge: 3 },
-  { path: '/admin', label: 'Admin Panel', icon: <MdAdminPanelSettings size={24} />, adminOnly: true },
   { path: '/settings', label: 'Settings', icon: <MdSettings size={24} /> },
   { path: '/profile', label: 'Profile', icon: <MdPerson size={24} /> },
 ];
 
 const STORAGE_KEY = 'sidebar-collapsed';
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000';
 
 export default function Sidebar() {
   // Load collapsed state from localStorage
@@ -68,34 +67,7 @@ export default function Sidebar() {
   });
 
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const [userRole, setUserRole] = useState<'admin' | 'user' | null>(null);
   const location = useLocation();
-  const { getToken } = useAuth();
-
-  // Fetch user role from backend
-  useEffect(() => {
-    const fetchUserRole = async () => {
-      try {
-        const token = await getToken();
-        if (!token) return;
-
-        const response = await fetch(`${API_BASE_URL}/api/users/me`, {
-          headers: {
-            'Authorization': `Bearer ${token}`,
-          },
-        });
-
-        if (response.ok) {
-          const data = await response.json();
-          setUserRole(data.data.user.role || 'user');
-        }
-      } catch (error) {
-        console.error('Failed to fetch user role:', error);
-      }
-    };
-
-    fetchUserRole();
-  }, [getToken]);
 
   // Persist collapsed state
   useEffect(() => {
@@ -179,9 +151,9 @@ export default function Sidebar() {
             {!isCollapsed && (
               <>
                 <div className="w-8 h-8 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 rounded-lg flex items-center justify-center shadow-lg" style={{ boxShadow: '0 0 20px rgba(99, 102, 241, 0.5)' }}>
-                  <span className="text-white font-bold text-sm">I</span>
+                  <span className="text-white font-bold text-sm">F</span>
                 </div>
-                <span className="font-bold text-white whitespace-nowrap tracking-wide" style={{ textShadow: '0 0 10px rgba(255, 255, 255, 0.3)' }}>INVESCO</span>
+                <span className="font-bold text-white whitespace-nowrap tracking-wide" style={{ textShadow: '0 0 10px rgba(255, 255, 255, 0.3)' }}>FINSIGHT</span>
               </>
             )}
           </motion.div>
@@ -215,7 +187,7 @@ export default function Sidebar() {
         {/* Navigation */}
         <nav className="flex-1 overflow-y-auto py-4 px-2 scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-transparent">
           <ul className="space-y-1">
-            {routes.filter(route => !route.adminOnly || userRole === 'admin').map((route) => (
+            {routes.map((route) => (
               <li key={route.path}>
                 <NavLink
                   to={route.path}

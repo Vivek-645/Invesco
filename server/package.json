@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "Invesco Hackathon Backend",
+  "description": "FinSight Financial Analytics Backend",
   "license": "ISC",
   "author": "Vivek",
   "type": "commonjs",

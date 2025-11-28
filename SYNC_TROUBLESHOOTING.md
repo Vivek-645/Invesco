@@ -98,7 +98,7 @@ If automatic sync isn't working, you can manually create a user in MongoDB:
 
 ```javascript
 // Connect to MongoDB via MongoDB Compass or mongo shell
-use invesco
+use finsight
 
 db.users.insertOne({
   clerkId: "user_YOUR_CLERK_ID", // Get this from Clerk dashboard

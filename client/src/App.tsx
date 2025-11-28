@@ -7,7 +7,8 @@ import Analytics from './pages/Analytics';
 import Reports from './pages/Reports';
 import Settings from './pages/Settings';
 import Profile from './pages/Profile';
-import AdminPage from './pages/AdminPage';
+import StockAnalytics from './pages/StockAnalytics';
+import StockVisualizations from './pages/StockVisualizations';
 import Sidebar from './components/Sidebar';
 
 function AppRoutes() {
@@ -34,12 +35,7 @@ function AppRoutes() {
         path="/dashboard"
         element={
           <SignedIn>
-            <div className="flex min-h-screen bg-gray-50">
-              <Sidebar />
-              <main className="flex-1">
-                <Dashboard />
-              </main>
-            </div>
+            <Dashboard />
           </SignedIn>
         }
       />
@@ -64,19 +60,6 @@ function AppRoutes() {
               <Sidebar />
               <main className="flex-1">
                 <Reports />
-              </main>
-            </div>
-          </SignedIn>
-        }
-      />
-      <Route
-        path="/admin"
-        element={
-          <SignedIn>
-            <div className="flex min-h-screen bg-gray-50">
-              <Sidebar />
-              <main className="flex-1">
-                <AdminPage />
               </main>
             </div>
           </SignedIn>
@@ -111,6 +94,10 @@ function AppRoutes() {
 
       {/* Redirect any unknown routes */}
       <Route path="*" element={<Navigate to="/" replace />} />
+
+      {/* Stock Analytics Routes (Public) */}
+      <Route path="/stock-analytics" element={<StockAnalytics />} />
+      <Route path="/stock-visualizations" element={<StockVisualizations />} />
     </Routes>
   );
 }

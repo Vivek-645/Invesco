@@ -1,0 +1,470 @@
+.visualizations-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.viz-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.viz-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.4;
+  animation: orbFloat 25s ease-in-out infinite;
+}
+
+.viz-orb-1 {
+  width: 500px;
+  height: 500px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  top: -150px;
+  right: -150px;
+}
+
+.viz-orb-2 {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, #06b6d4, #10b981);
+  bottom: 10%;
+  left: -100px;
+  animation-delay: -10s;
+}
+
+.viz-orb-3 {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, #ec4899, #f43f5e);
+  top: 40%;
+  right: 5%;
+  animation-delay: -18s;
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -40px) scale(1.1); }
+  66% { transform: translate(-30px, 30px) scale(0.9); }
+}
+
+/* Navigation */
+.viz-nav {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 4rem;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.viz-nav .nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+}
+
+.viz-nav .logo-icon {
+  font-size: 1.75rem;
+}
+
+.viz-nav .nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.viz-nav .nav-links a,
+.viz-nav .nav-links span {
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.viz-nav .nav-links a:hover,
+.viz-nav .nav-links .active {
+  color: #3b82f6;
+}
+
+/* Content */
+.viz-content {
+  position: relative;
+  z-index: 10;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.viz-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.back-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.viz-header h1 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.viz-header p {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Company Sections */
+.company-section {
+  margin-bottom: 4rem;
+  padding: 2rem;
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.msft-section {
+  border-left: 4px solid #00A4EF;
+}
+
+.nflx-section {
+  border-left: 4px solid #E50914;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.company-badge {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.badge-logo {
+  width: 40px;
+  height: 40px;
+}
+
+.netflix-logo {
+  width: 40px;
+  height: 40px;
+  background: #E50914;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: white;
+}
+
+.company-badge h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+}
+
+.metrics-badges {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.badge {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.9);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Charts Grid */
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+@media (max-width: 1200px) {
+  .charts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.chart-card {
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.chart-card.full-width {
+  grid-column: 1 / -1;
+}
+
+.chart-card h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.chart-description {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.chart-container {
+  width: 100%;
+  height: 350px;
+}
+
+/* Custom Tooltip */
+.custom-tooltip {
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.tooltip-date {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 0.5rem;
+}
+
+.tooltip-value {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0.25rem 0;
+}
+
+.tooltip-value span {
+  font-weight: 600;
+  color: white;
+}
+
+.tooltip-value .negative {
+  color: #ef4444;
+}
+
+.tooltip-value .positive {
+  color: #10b981;
+}
+
+/* Comparison Section */
+.comparison-section {
+  margin-bottom: 4rem;
+}
+
+.comparison-section h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.comparison-charts {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Takeaways Section */
+.takeaways-section {
+  padding: 2rem;
+  background: rgba(30, 41, 59, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 2rem;
+}
+
+.takeaways-section h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.takeaways-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 1024px) {
+  .takeaways-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.takeaway-card {
+  background: rgba(15, 23, 42, 0.5);
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.takeaway-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.takeaway-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.takeaway-card h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 0.75rem;
+}
+
+.takeaway-card p {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+}
+
+.takeaway-card strong {
+  color: #3b82f6;
+}
+
+/* Footer */
+.viz-footer {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.viz-footer p {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .viz-nav {
+    padding: 1rem 1.5rem;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .viz-content {
+    padding: 1rem;
+  }
+
+  .viz-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .company-section {
+    padding: 1.5rem 1rem;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .chart-container {
+    height: 300px;
+  }
+
+  .metrics-badges {
+    flex-wrap: wrap;
+  }
+}
+
+/* Recharts Customization */
+.recharts-text {
+  fill: rgba(255, 255, 255, 0.7) !important;
+}
+
+.recharts-cartesian-axis-tick-value {
+  fill: rgba(255, 255, 255, 0.5) !important;
+}
+
+.recharts-legend-item-text {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.recharts-tooltip-wrapper {
+  outline: none;
+}
+
+.recharts-default-tooltip {
+  background: rgba(15, 23, 42, 0.95) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 8px !important;
+}
+
+.recharts-tooltip-label {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.recharts-tooltip-item {
+  color: rgba(255, 255, 255, 0.9) !important;
+}

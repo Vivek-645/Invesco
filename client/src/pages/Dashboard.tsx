@@ -1,4 +1,5 @@
 import { UserButton, useUser, useAuth } from '@clerk/clerk-react';
+import { useNavigate } from 'react-router-dom';
 import { TrendingUp, BarChart3, DollarSign, Activity } from 'lucide-react';
 import ChatWidget from '../components/ChatWidget';
 import './Dashboard.css';
@@ -6,6 +7,7 @@ import './Dashboard.css';
 export default function Dashboard() {
   const { user } = useUser();
   const { getToken } = useAuth();
+  const navigate = useNavigate();
 
   const getAuthToken = async () => {
     const token = await getToken();
@@ -18,14 +20,23 @@ export default function Dashboard() {
       {/* Header with User Info */}
       <header className="sticky top-0 z-10 bg-slate-900/80 backdrop-blur-xl border-b border-slate-800/50 px-8 py-4" style={{ boxShadow: '0 0 30px rgba(99, 102, 241, 0.1)' }}>
         <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-white flex items-center gap-2">
-              <TrendingUp size={28} className="text-indigo-400" style={{ filter: 'drop-shadow(0 0 10px rgba(129, 140, 248, 0.5))' }} />
-              <span style={{ textShadow: '0 0 20px rgba(255, 255, 255, 0.2)' }}>Investment Dashboard</span>
-            </h1>
-            <p className="text-slate-400 text-sm mt-1">
-              Welcome back, <span className="text-indigo-400 font-semibold">{user?.firstName || 'Investor'}</span>!
-            </p>
+          <div className="flex items-center gap-6">
+            <div>
+              <h1 className="text-2xl font-bold text-white flex items-center gap-2">
+                <TrendingUp size={28} className="text-indigo-400" style={{ filter: 'drop-shadow(0 0 10px rgba(129, 140, 248, 0.5))' }} />
+                <span style={{ textShadow: '0 0 20px rgba(255, 255, 255, 0.2)' }}>Investment Dashboard</span>
+              </h1>
+              <p className="text-slate-400 text-sm mt-1">
+                Welcome back, <span className="text-indigo-400 font-semibold">{user?.firstName || 'Investor'}</span>!
+              </p>
+            </div>
+            <button
+              onClick={() => navigate('/stock-analytics')}
+              className="stock-analytics-btn"
+            >
+              <BarChart3 size={18} />
+              <span>Stock Analytics</span>
+            </button>
           </div>
           <UserButton afterSignOutUrl="/" />
         </div>

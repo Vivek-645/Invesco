@@ -242,7 +242,7 @@ async function generateRAGResponse(query, userContext = {}) {
     .join('\n\n');
 
   // Build prompt with context
-  const prompt = `You are an expert investment advisor and financial analyst for Invesco, a premium investment management company. Use the following information from our knowledge base to answer the user's question accurately and professionally.
+  const prompt = `You are an expert financial analyst for FinSight, a financial analytics platform specializing in stock analysis for Microsoft (MSFT) and Netflix (NFLX). Use the following information from our knowledge base to answer the user's question accurately and professionally.
 
 CONTEXT FROM KNOWLEDGE BASE:
 ${context}
@@ -260,7 +260,7 @@ INSTRUCTIONS:
 3. Use specific numbers and data from the context when available
 4. Keep responses concise but informative (2-4 paragraphs)
 5. End with a helpful suggestion or next step when appropriate
-6. Maintain a professional, trustworthy tone suitable for financial advice
+6. Maintain a professional, trustworthy tone suitable for financial analysis
 
 ANSWER:`;
 
@@ -297,12 +297,12 @@ async function generateChatResponse(message, chatHistory = []) {
     .map(msg => `${msg.role === 'user' ? 'User' : 'Assistant'}: ${msg.content}`)
     .join('\n');
 
-  const prompt = `You are an expert investment advisor for Invesco. Continue this conversation naturally and professionally.
+  const prompt = `You are an expert financial analyst for FinSight, specializing in stock analysis for MSFT and NFLX. Continue this conversation naturally and professionally.
 
 ${conversationContext ? `CONVERSATION HISTORY:\n${conversationContext}\n\n` : ''}USER MESSAGE:
 ${message}
 
-Provide a helpful, professional response focused on investment advice, portfolio management, market insights, or financial planning.`;
+Provide a helpful, professional response focused on financial analytics, stock performance metrics, Maximum Drawdown analysis, WACC calculations, or beta computations.`;
 
   try {
     const result = await model.generateContent(prompt);

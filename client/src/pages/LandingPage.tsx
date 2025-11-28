@@ -18,7 +18,7 @@ export default function LandingPage() {
         <div className="nav-container">
           <div className="logo-section">
             <TrendingUp className="logo-icon" size={32} />
-            <span className="logo-text">INVESCO</span>
+            <span className="logo-text">FINSIGHT</span>
           </div>
           <SignInButton mode="modal">
             <button className="signin-btn">
@@ -47,18 +47,18 @@ export default function LandingPage() {
           <div className="hero-content">
             <div className="hero-badge">
               <Sparkles size={16} />
-              <span>Premium Investment Management</span>
+              <span>Financial Analytics Platform</span>
             </div>
             
             <h1 className="hero-title">
-              Transform Your
-              <span className="gradient-text"> Financial Future</span>
+              Analyze MSFT & NFLX
+              <span className="gradient-text"> Stock Performance</span>
             </h1>
             
             <p className="hero-subtitle">
-              Experience next-generation wealth management with cutting-edge technology, 
-              data-driven insights, and personalized investment strategies designed for 
-              the modern investor.
+              Comprehensive financial analytics platform for Microsoft (MSFT) and Netflix (NFLX). 
+              Calculate Maximum Drawdown, WACC, Beta, and Cost of Capital metrics from 2020-2024 
+              with interactive visualizations.
             </p>
 
             <div className="hero-cta">
@@ -76,16 +76,16 @@ export default function LandingPage() {
             {/* Stats */}
             <div className="stats-grid">
               <div className="stat-card">
-                <div className="stat-value">$50B+</div>
-                <div className="stat-label">Assets Under Management</div>
+                <div className="stat-value">60+</div>
+                <div className="stat-label">Monthly Data Points</div>
               </div>
               <div className="stat-card">
-                <div className="stat-value">15K+</div>
-                <div className="stat-label">Global Clients</div>
+                <div className="stat-value">2</div>
+                <div className="stat-label">Stock Comparisons</div>
               </div>
               <div className="stat-card">
-                <div className="stat-value">98%</div>
-                <div className="stat-label">Client Satisfaction</div>
+                <div className="stat-value">100%</div>
+                <div className="stat-label">WACC Coverage (0-99%)</div>
               </div>
             </div>
           </div>
@@ -169,7 +169,7 @@ export default function LandingPage() {
       <section className="features-section">
         <div className="features-container">
           <h2 className="section-title">
-            Why Choose <span className="gradient-text">Invesco</span>
+            Why Choose <span className="gradient-text">FinSight</span>
           </h2>
           
           <div className="features-grid">
@@ -177,32 +177,32 @@ export default function LandingPage() {
               <div className="feature-icon">
                 <BarChart3 size={28} />
               </div>
-              <h3>Advanced Analytics</h3>
-              <p>Real-time market insights powered by AI and machine learning algorithms</p>
+              <h3>Maximum Drawdown Analysis</h3>
+              <p>Calculate MDD from rebased values to measure downside risk and portfolio volatility</p>
             </div>
 
             <div className="feature-card">
               <div className="feature-icon">
                 <Shield size={28} />
               </div>
-              <h3>Secure & Trusted</h3>
-              <p>Bank-grade security with multi-layer encryption and regulatory compliance</p>
+              <h3>Beta Calculations</h3>
+              <p>Compute unlevered and relevered beta for different capital structures and debt levels</p>
             </div>
 
             <div className="feature-card">
               <div className="feature-icon">
                 <TrendingUp size={28} />
               </div>
-              <h3>Proven Returns</h3>
-              <p>Consistent portfolio growth with diversified investment strategies</p>
+              <h3>WACC Analysis</h3>
+              <p>Visualize Weighted Average Cost of Capital across debt percentages from 0% to 99%</p>
             </div>
 
             <div className="feature-card">
               <div className="feature-icon">
                 <Sparkles size={28} />
               </div>
-              <h3>Personalized Service</h3>
-              <p>Dedicated advisors and custom investment plans tailored to your goals</p>
+              <h3>Stock Comparison</h3>
+              <p>Side-by-side comparison of MSFT and NFLX with interactive charts and insights</p>
             </div>
           </div>
         </div>
@@ -212,8 +212,8 @@ export default function LandingPage() {
       <section className="cta-section">
         <div className="cta-container">
           <div className="cta-content">
-            <h2>Ready to Start Your Investment Journey?</h2>
-            <p>Join thousands of successful investors managing their wealth with Invesco</p>
+            <h2>Ready to Analyze Stock Performance?</h2>
+            <p>Explore comprehensive financial metrics and visualizations for MSFT and NFLX</p>
             <SignInButton mode="modal">
               <button className="cta-final">
                 <span>Get Started Now</span>
@@ -230,10 +230,10 @@ export default function LandingPage() {
           <div className="footer-content">
             <div className="footer-brand">
               <TrendingUp size={24} />
-              <span>INVESCO</span>
+              <span>FINSIGHT</span>
             </div>
             <p className="footer-text">
-              © 2025 Invesco. Premium Investment Management. All rights reserved.
+              © 2025 FinSight. Financial Analytics Platform for Stock Analysis. All rights reserved.
             </p>
           </div>
         </div>
