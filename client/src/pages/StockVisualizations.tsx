@@ -64,7 +64,7 @@ const StockVisualizations = () => {
         <div className="custom-tooltip">
           <p className="tooltip-date">{formatDate(label)}</p>
           <p className="tooltip-value">
-            Drawdown: <span className="negative">{payload[0].value.toFixed(2)}%</span>
+            Drawdown: <span className="negative">{payload[0].value.toFixed(8)}%</span>
           </p>
           <p className="tooltip-value">
             Rebased: <span>{formatNumber(payload[0].payload.rebasedValue)}</span>
@@ -82,13 +82,13 @@ const StockVisualizations = () => {
         <div className="custom-tooltip">
           <p className="tooltip-date">Debt: {label}%</p>
           <p className="tooltip-value">
-            WACC: <span>{payload[0].value.toFixed(2)}%</span>
+            WACC: <span>{payload[0].value.toFixed(8)}%</span>
           </p>
           <p className="tooltip-value">
-            Cost of Equity: <span>{payload[0].payload.costOfEquity.toFixed(2)}%</span>
+            Cost of Equity: <span>{payload[0].payload.costOfEquity.toFixed(8)}%</span>
           </p>
           <p className="tooltip-value">
-            Beta: <span>{payload[0].payload.releveredBeta.toFixed(3)}</span>
+            Beta: <span>{payload[0].payload.releveredBeta.toFixed(8)}</span>
           </p>
         </div>
       );
@@ -141,7 +141,7 @@ const StockVisualizations = () => {
               <h2>Microsoft Corporation (MSFT)</h2>
             </div>
             <div className="metrics-badges">
-              <span className="badge">MDD: {(msftData.metrics.maxDrawdown * 100).toFixed(2)}%</span>
+              <span className="badge">MDD: {(msftData.metrics.maxDrawdown * 100).toFixed(8)}%</span>
               <span className="badge">Beta: {formatNumber(msftData.metrics.unleveredBeta)}</span>
             </div>
           </div>
@@ -155,7 +155,7 @@ const StockVisualizations = () => {
               </p>
               <div className="chart-container">
                 <ResponsiveContainer width="100%" height={350}>
-                  <AreaChart data={msftDrawdownData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                  <AreaChart data={msftDrawdownData} margin={{ top: 10, right: 30, left: 60, bottom: 0 }}>
                     <defs>
                       <linearGradient id="msftDrawdownGradient" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="5%" stopColor="#00A4EF" stopOpacity={0.4}/>
@@ -173,8 +173,9 @@ const StockVisualizations = () => {
                     <YAxis 
                       stroke="rgba(255,255,255,0.5)"
                       tick={{ fontSize: 12 }}
-                      tickFormatter={(value) => `${value.toFixed(0)}%`}
+                      tickFormatter={(value) => `${value.toFixed(2)}%`}
                       domain={[0, 'auto']}
+                      width={100}
                     />
                     <Tooltip content={<DrawdownTooltip />} />
                     <Area 
@@ -198,7 +199,7 @@ const StockVisualizations = () => {
               </p>
               <div className="chart-container">
                 <ResponsiveContainer width="100%" height={350}>
-                  <LineChart data={msftData.waccData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                  <LineChart data={msftData.waccData} margin={{ top: 10, right: 30, left: 60, bottom: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
                     <XAxis 
                       dataKey="debtPercent" 
@@ -209,8 +210,9 @@ const StockVisualizations = () => {
                     <YAxis 
                       stroke="rgba(255,255,255,0.5)"
                       tick={{ fontSize: 12 }}
-                      tickFormatter={(value) => `${value.toFixed(0)}%`}
+                      tickFormatter={(value) => `${value.toFixed(2)}%`}
                       domain={['auto', 'auto']}
+                      width={80}
                     />
                     <Tooltip content={<WACCTooltip />} />
                     <Line 
@@ -236,7 +238,7 @@ const StockVisualizations = () => {
               <h2>Netflix, Inc. (NFLX)</h2>
             </div>
             <div className="metrics-badges">
-              <span className="badge">MDD: {(nflxData.metrics.maxDrawdown * 100).toFixed(2)}%</span>
+              <span className="badge">MDD: {(nflxData.metrics.maxDrawdown * 100).toFixed(8)}%</span>
               <span className="badge">Beta: {formatNumber(nflxData.metrics.unleveredBeta)}</span>
             </div>
           </div>
@@ -250,7 +252,7 @@ const StockVisualizations = () => {
               </p>
               <div className="chart-container">
                 <ResponsiveContainer width="100%" height={350}>
-                  <AreaChart data={nflxDrawdownData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                  <AreaChart data={nflxDrawdownData} margin={{ top: 10, right: 30, left: 60, bottom: 0 }}>
                     <defs>
                       <linearGradient id="nflxDrawdownGradient" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="5%" stopColor="#E50914" stopOpacity={0.4}/>
@@ -268,8 +270,9 @@ const StockVisualizations = () => {
                     <YAxis 
                       stroke="rgba(255,255,255,0.5)"
                       tick={{ fontSize: 12 }}
-                      tickFormatter={(value) => `${value.toFixed(0)}%`}
+                      tickFormatter={(value) => `${value.toFixed(2)}%`}
                       domain={[0, 'auto']}
+                      width={100}
                     />
                     <Tooltip content={<DrawdownTooltip />} />
                     <Area 
@@ -293,7 +296,7 @@ const StockVisualizations = () => {
               </p>
               <div className="chart-container">
                 <ResponsiveContainer width="100%" height={350}>
-                  <LineChart data={nflxData.waccData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                  <LineChart data={nflxData.waccData} margin={{ top: 10, right: 30, left: 60, bottom: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
                     <XAxis 
                       dataKey="debtPercent" 
@@ -304,8 +307,9 @@ const StockVisualizations = () => {
                     <YAxis 
                       stroke="rgba(255,255,255,0.5)"
                       tick={{ fontSize: 12 }}
-                      tickFormatter={(value) => `${value.toFixed(0)}%`}
+                      tickFormatter={(value) => `${value.toFixed(2)}%`}
                       domain={['auto', 'auto']}
+                      width={80}
                     />
                     <Tooltip content={<WACCTooltip />} />
                     <Line 
@@ -333,7 +337,7 @@ const StockVisualizations = () => {
               <h3>Drawdown Comparison: MSFT vs NFLX</h3>
               <div className="chart-container">
                 <ResponsiveContainer width="100%" height={400}>
-                  <AreaChart margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                  <AreaChart margin={{ top: 10, right: 30, left: 60, bottom: 0 }}>
                     <defs>
                       <linearGradient id="msftGradient" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="5%" stopColor="#00A4EF" stopOpacity={0.3}/>
@@ -355,7 +359,8 @@ const StockVisualizations = () => {
                     <YAxis 
                       stroke="rgba(255,255,255,0.5)"
                       tick={{ fontSize: 12 }}
-                      tickFormatter={(value) => `${value.toFixed(0)}%`}
+                      tickFormatter={(value) => `${value.toFixed(2)}%`}
+                      width={100}
                     />
                     <Tooltip 
                       formatter={(value: number, name: string) => [`${value.toFixed(2)}%`, name]}
@@ -391,7 +396,7 @@ const StockVisualizations = () => {
               <h3>WACC Comparison: MSFT vs NFLX</h3>
               <div className="chart-container">
                 <ResponsiveContainer width="100%" height={400}>
-                  <LineChart margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                  <LineChart margin={{ top: 10, right: 30, left: 60, bottom: 0 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.1)" />
                     <XAxis 
                       dataKey="debtPercent" 
@@ -403,7 +408,8 @@ const StockVisualizations = () => {
                     <YAxis 
                       stroke="rgba(255,255,255,0.5)"
                       tick={{ fontSize: 12 }}
-                      tickFormatter={(value) => `${value.toFixed(0)}%`}
+                      tickFormatter={(value) => `${value.toFixed(2)}%`}
+                      width={100}
                     />
                     <Tooltip 
                       formatter={(value: number, name: string) => [`${value.toFixed(2)}%`, name]}
@@ -444,8 +450,8 @@ const StockVisualizations = () => {
               <div className="takeaway-icon">📉</div>
               <h4>Maximum Drawdown</h4>
               <p>
-                Netflix experienced a maximum drawdown of <strong>{(nflxData.metrics.maxDrawdown * 100).toFixed(1)}%</strong> compared to 
-                Microsoft's <strong>{(msftData.metrics.maxDrawdown * 100).toFixed(1)}%</strong>, indicating higher volatility and risk for Netflix investors.
+                Netflix experienced a maximum drawdown of <strong>{(nflxData.metrics.maxDrawdown * 100).toFixed(8)}%</strong> compared to 
+                Microsoft's <strong>{(msftData.metrics.maxDrawdown * 100).toFixed(8)}%</strong>, indicating higher volatility and risk for Netflix investors.
               </p>
             </div>
             <div className="takeaway-card">
@@ -463,6 +469,75 @@ const StockVisualizations = () => {
                 As debt increases, WACC initially decreases due to tax shields, then rises as financial distress risk increases. 
                 The optimal capital structure balances these effects.
               </p>
+            </div>
+          </div>
+
+          {/* Detailed Financial Metrics */}
+          <h3 className="metrics-section-title">Detailed Financial Metrics</h3>
+          <div className="detailed-metrics-grid">
+            {/* Microsoft Metrics */}
+            <div className="detailed-metrics-card msft-metrics">
+              <div className="metrics-card-header">
+                <svg viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg" className="company-logo-small">
+                  <rect width="11" height="11" fill="#f25022"/>
+                  <rect x="12" width="11" height="11" fill="#7fba00"/>
+                  <rect y="12" width="11" height="11" fill="#00a4ef"/>
+                  <rect x="12" y="12" width="11" height="11" fill="#ffb900"/>
+                </svg>
+                <h4>Microsoft (MSFT)</h4>
+              </div>
+              <div className="metrics-list">
+                <div className="metric-row">
+                  <span className="metric-label">SPY 5Y Annualized Return</span>
+                  <span className="metric-value">{(12.734796).toFixed(8)}%</span>
+                </div>
+                <div className="metric-row">
+                  <span className="metric-label">MSFT Beta (Levered)</span>
+                  <span className="metric-value">{(0.878299485).toFixed(8)}</span>
+                </div>
+                <div className="metric-row">
+                  <span className="metric-label">MSFT Unlevered Beta</span>
+                  <span className="metric-value">{formatNumber(msftData.metrics.unleveredBeta)}</span>
+                </div>
+                <div className="metric-row highlight">
+                  <span className="metric-label">Optimal WACC</span>
+                  <span className="metric-value">{(10.17295100).toFixed(8)}%</span>
+                </div>
+                <div className="metric-row highlight">
+                  <span className="metric-label">Debt % at Optimal WACC</span>
+                  <span className="metric-value">23%</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Netflix Metrics */}
+            <div className="detailed-metrics-card nflx-metrics">
+              <div className="metrics-card-header">
+                <div className="company-logo-small netflix-logo-small">N</div>
+                <h4>Netflix (NFLX)</h4>
+              </div>
+              <div className="metrics-list">
+                <div className="metric-row">
+                  <span className="metric-label">SPY 5Y Annualized Return</span>
+                  <span className="metric-value">{(12.734796).toFixed(8)}%</span>
+                </div>
+                <div className="metric-row">
+                  <span className="metric-label">NFLX Beta (Levered)</span>
+                  <span className="metric-value">{(1.45).toFixed(8)}</span>
+                </div>
+                <div className="metric-row">
+                  <span className="metric-label">NFLX Unlevered Beta</span>
+                  <span className="metric-value">{formatNumber(nflxData.metrics.unleveredBeta)}</span>
+                </div>
+                <div className="metric-row highlight">
+                  <span className="metric-label">Optimal WACC</span>
+                  <span className="metric-value">{(11.15698700).toFixed(8)}%</span>
+                </div>
+                <div className="metric-row highlight">
+                  <span className="metric-label">Debt % at Optimal WACC</span>
+                  <span className="metric-value">25%</span>
+                </div>
+              </div>
             </div>
           </div>
         </section>

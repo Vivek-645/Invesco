@@ -285,14 +285,14 @@ export function processStockData(symbol: string, values: StockDataPoint[]): Stoc
 /**
  * Format percentage for display
  */
-export function formatPercent(value: number, decimals: number = 2): string {
+export function formatPercent(value: number, decimals: number = 8): string {
   return `${(value * 100).toFixed(decimals)}%`;
 }
 
 /**
  * Format number with commas
  */
-export function formatNumber(value: number, decimals: number = 2): string {
+export function formatNumber(value: number, decimals: number = 8): string {
   return value.toLocaleString('en-US', {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,

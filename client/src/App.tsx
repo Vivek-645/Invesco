@@ -1,6 +1,7 @@
-import { SignedIn, SignedOut } from '@clerk/clerk-react';
+import { SignedIn, SignedOut, useAuth } from '@clerk/clerk-react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { SyncUserToBackend } from './components/SyncUserToBackend';
+import ChatWidget from './components/ChatWidget';
 import LandingPage from './pages/LandingPage';
 import Dashboard from './pages/Dashboard';
 import Analytics from './pages/Analytics';
@@ -102,12 +103,29 @@ function AppRoutes() {
   );
 }
 
+function GlobalChatWidget() {
+  const { getToken } = useAuth();
+  
+  const getAuthToken = async () => {
+    const token = await getToken();
+    return token || '';
+  };
+
+  return (
+    <ChatWidget 
+      apiBaseUrl={import.meta.env.VITE_BACKEND_API_URL || 'http://localhost:4000'}
+      getAuthToken={getAuthToken}
+    />
+  );
+}
+
 export default function App() {
   return (
     <BrowserRouter>
       {/* Auto-sync user to backend when signed in */}
       <SignedIn>
         <SyncUserToBackend />
+        <GlobalChatWidget />
       </SignedIn>
 
       <AppRoutes />

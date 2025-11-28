@@ -1,35 +1,27 @@
-import { UserButton, useUser, useAuth } from '@clerk/clerk-react';
+import { UserButton, useUser } from '@clerk/clerk-react';
 import { useNavigate } from 'react-router-dom';
-import { TrendingUp, BarChart3, DollarSign, Activity } from 'lucide-react';
-import ChatWidget from '../components/ChatWidget';
+import { TrendingUp, BarChart3, DollarSign, Activity, Globe, Users, Building2, Award } from 'lucide-react';
 import './Dashboard.css';
 
 export default function Dashboard() {
   const { user } = useUser();
-  const { getToken } = useAuth();
   const navigate = useNavigate();
-
-  const getAuthToken = async () => {
-    const token = await getToken();
-    if (!token) throw new Error('No authentication token available');
-    return token;
-  };
 
   return (
     <div className="dashboard bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
       {/* Header with User Info */}
-      <header className="sticky top-0 z-10 bg-slate-900/80 backdrop-blur-xl border-b border-slate-800/50 px-8 py-4" style={{ boxShadow: '0 0 30px rgba(99, 102, 241, 0.1)' }}>
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-6">
-            <div>
-              <h1 className="text-2xl font-bold text-white flex items-center gap-2">
-                <TrendingUp size={28} className="text-indigo-400" style={{ filter: 'drop-shadow(0 0 10px rgba(129, 140, 248, 0.5))' }} />
-                <span style={{ textShadow: '0 0 20px rgba(255, 255, 255, 0.2)' }}>Investment Dashboard</span>
-              </h1>
-              <p className="text-slate-400 text-sm mt-1">
-                Welcome back, <span className="text-indigo-400 font-semibold">{user?.firstName || 'Investor'}</span>!
-              </p>
-            </div>
+      <header className="sticky top-0 z-10 bg-slate-900/80 backdrop-blur-xl border-b border-slate-800/50 px-10 py-5" style={{ boxShadow: '0 0 30px rgba(99, 102, 241, 0.1)' }}>
+        <div className="flex items-center justify-between max-w-7xl mx-auto">
+          <div>
+            <h1 className="text-2xl font-bold text-white flex items-center gap-3">
+              <TrendingUp size={30} className="text-indigo-400" style={{ filter: 'drop-shadow(0 0 10px rgba(129, 140, 248, 0.5))' }} />
+              <span style={{ textShadow: '0 0 20px rgba(255, 255, 255, 0.2)' }}>Investment Dashboard</span>
+            </h1>
+            <p className="text-slate-400 text-sm mt-1.5 ml-11">
+              Welcome back, <span className="text-indigo-400 font-semibold">{user?.firstName || 'Investor'}</span>!
+            </p>
+          </div>
+          <div className="flex items-center gap-5">
             <button
               onClick={() => navigate('/stock-analytics')}
               className="stock-analytics-btn"
@@ -37,22 +29,22 @@ export default function Dashboard() {
               <BarChart3 size={18} />
               <span>Stock Analytics</span>
             </button>
+            <UserButton afterSignOutUrl="/" />
           </div>
-          <UserButton afterSignOutUrl="/" />
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="p-8">
-        <div className="max-w-7xl mx-auto">
+      <main className="px-10 py-10">
+        <div className="max-w-7xl mx-auto space-y-8">
           {/* Page Title */}
-          <div className="page-header">
+          <div className="page-header mb-8">
             <h1>Investment Dashboard</h1>
             <p>Your portfolio overview and performance metrics</p>
           </div>
 
           {/* Stats Grid */}
-          <div className="dashboard-stats">
+          <div className="dashboard-stats mb-8">
             <div className="stat-box">
               <div className="stat-icon blue">
                 <DollarSign size={24} />
@@ -111,7 +103,7 @@ export default function Dashboard() {
           </div>
 
           {/* Charts Section */}
-          <div className="charts-grid">
+          <div className="charts-grid mb-8">
             <div className="chart-card large">
               <div className="chart-header">
                 <h3>Portfolio Performance</h3>
@@ -208,7 +200,7 @@ export default function Dashboard() {
           </div>
 
           {/* Holdings Table */}
-          <div className="holdings-card">
+          <div className="holdings-card mb-8">
             <div className="holdings-header">
               <h3>Recent Investments</h3>
               <button className="view-all-btn">View All</button>
@@ -280,14 +272,115 @@ export default function Dashboard() {
               <p>Your user data has been synchronized with the backend database.</p>
             </div>
           </div>
+
+          {/* Invesco Assets Under Management Section */}
+          <div className="invesco-aum-section">
+            <div className="aum-header">
+              <h2>Invesco - Assets Under Management</h2>
+              <p>Global investment management excellence since 1935</p>
+            </div>
+            
+            <div className="aum-stats-grid">
+              <div className="aum-stat-card">
+                <div className="aum-stat-icon">
+                  <DollarSign size={28} />
+                </div>
+                <div className="aum-stat-value">$1.85T</div>
+                <div className="aum-stat-label">Total AUM</div>
+                <div className="aum-stat-desc">Assets under management as of Q3 2024</div>
+              </div>
+              
+              <div className="aum-stat-card">
+                <div className="aum-stat-icon globe">
+                  <Globe size={28} />
+                </div>
+                <div className="aum-stat-value">25+</div>
+                <div className="aum-stat-label">Countries</div>
+                <div className="aum-stat-desc">Global presence across major financial markets</div>
+              </div>
+              
+              <div className="aum-stat-card">
+                <div className="aum-stat-icon users">
+                  <Users size={28} />
+                </div>
+                <div className="aum-stat-value">8,500+</div>
+                <div className="aum-stat-label">Employees</div>
+                <div className="aum-stat-desc">Investment professionals worldwide</div>
+              </div>
+              
+              <div className="aum-stat-card">
+                <div className="aum-stat-icon award">
+                  <Award size={28} />
+                </div>
+                <div className="aum-stat-value">150+</div>
+                <div className="aum-stat-label">ETFs</div>
+                <div className="aum-stat-desc">Exchange-traded funds globally</div>
+              </div>
+            </div>
+
+            <div className="aum-details-grid">
+              <div className="aum-detail-card">
+                <h4><Building2 size={20} /> Investment Capabilities</h4>
+                <ul>
+                  <li><span>Equity:</span> $687B in global equity strategies</li>
+                  <li><span>Fixed Income:</span> $412B across bond markets</li>
+                  <li><span>Alternatives:</span> $198B in real estate, private credit</li>
+                  <li><span>Multi-Asset:</span> $289B in balanced solutions</li>
+                  <li><span>Money Market:</span> $264B in liquidity solutions</li>
+                </ul>
+              </div>
+              
+              <div className="aum-detail-card">
+                <h4><Globe size={20} /> Regional AUM Distribution</h4>
+                <div className="region-bars">
+                  <div className="region-item">
+                    <div className="region-info">
+                      <span>Americas</span>
+                      <span>$1.12T (60%)</span>
+                    </div>
+                    <div className="region-bar">
+                      <div className="region-fill americas" style={{ width: '60%' }}></div>
+                    </div>
+                  </div>
+                  <div className="region-item">
+                    <div className="region-info">
+                      <span>EMEA</span>
+                      <span>$481B (26%)</span>
+                    </div>
+                    <div className="region-bar">
+                      <div className="region-fill emea" style={{ width: '26%' }}></div>
+                    </div>
+                  </div>
+                  <div className="region-item">
+                    <div className="region-info">
+                      <span>Asia Pacific</span>
+                      <span>$259B (14%)</span>
+                    </div>
+                    <div className="region-bar">
+                      <div className="region-fill apac" style={{ width: '14%' }}></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="aum-highlights">
+              <div className="highlight-item">
+                <span className="highlight-number">#6</span>
+                <span className="highlight-text">Largest retail asset manager in the US</span>
+              </div>
+              <div className="highlight-item">
+                <span className="highlight-number">#4</span>
+                <span className="highlight-text">Largest ETF provider globally</span>
+              </div>
+              <div className="highlight-item">
+                <span className="highlight-number">89</span>
+                <span className="highlight-text">Years of investment excellence</span>
+              </div>
+            </div>
+          </div>
         </div>
       </main>
-
-      {/* AI Chat Widget */}
-      <ChatWidget 
-        apiBaseUrl={import.meta.env.VITE_BACKEND_API_URL || 'http://localhost:4000'}
-        getAuthToken={getAuthToken}
-      />
     </div>
   );
 }

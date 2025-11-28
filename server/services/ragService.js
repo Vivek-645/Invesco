@@ -274,7 +274,7 @@ ANSWER:`;
       sources: relevantDocs.map(doc => ({
         content: doc.content.substring(0, 200) + '...',
         metadata: doc.metadata,
-        relevanceScore: doc.score.toFixed(3),
+        relevanceScore: doc.score.toFixed(8),
       })),
       confidence: relevantDocs[0].score > 0.7 ? 'high' : relevantDocs[0].score > 0.5 ? 'medium' : 'low',
     };
